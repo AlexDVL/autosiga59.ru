@@ -103,7 +103,7 @@ a:hover, a:active, a:focus {
 
 /* ~~ Header ~~ */
 #header {
-    background: url(/assets/images/headerBackground.jpg) #9C3 center;
+    background: url(/assets/img/headerBackground.jpg) #9C3 center;
     width: 100%; height: 270px;
     display: table; position: relative;
 }
@@ -113,7 +113,7 @@ a:hover, a:active, a:focus {
     position: absolute; z-index: 10;
 }
 #carImg {
-    background: url(/assets/images/car.png) no-repeat center;
+    background: url(/assets/img/car.png) no-repeat center;
     width: 100%; height: 290px;
     position: absolute; top: 60px;
 }
@@ -176,7 +176,7 @@ li.socialIcon a:focus {
     position: relative; display: table;
 }
 #bolts {
-    background: url(/assets/images/bolts.jpg) no-repeat right top;
+    background: url(/assets/img/bolts.jpg) no-repeat right top;
     width: 330px; height: 50px;
     margin: 58px 0 0 0;
     display: inline-block;
@@ -211,12 +211,12 @@ li.socialIcon a:focus {
 #error { margin: 0 0 400px 0; }
 #content.loading {
     opacity: 0.7;
-    background: url(/assets/images/ajaxPreLoader.gif) 50% 0% no-repeat;
+    background: url(/assets/img/ajaxPreLoader.gif) 50% 0% no-repeat;
 }
 .loading #preLoaderBlock  {
     display: block; position: absolute; top: 0;
     height: 100%; width: 100%;
-    background: rgba( 255, 255, 255, .7 ) url(/assets/images/ajaxPreLoader.gif) 50% 0% no-repeat;
+    background: rgba( 255, 255, 255, .7 ) url(/assets/img/ajaxPreLoader.gif) 50% 0% no-repeat;
 }
 
 
@@ -258,7 +258,7 @@ li.socialIcon a:focus {
 #ReviewsPreLoader.loading {
     margin: 20px 0;
     height: 19px;
-    background: url(/assets/images/ajaxPreLoader.gif) 50% 0 no-repeat;
+    background: url(/assets/img/ajaxPreLoader.gif) 50% 0 no-repeat;
 }
 .reviews-autosiga59 ol {
     list-style: none;
@@ -429,13 +429,13 @@ li.socialIcon a:focus {
 
 /* ~~ Green block ~~ */
 #greenContainer { width: 920px; margin: 0 auto; overflow: hidden; }
-#greenTopShadow { background: url(/assets/images/greenTopShadow.png) repeat-x; width: 100%; height: 3px; position: absolute; z-index: 20; left: 0; right: 0; top: 0; }
-#greenBottomShadow { background: url(/assets/images/greenBottomShadow.png) repeat-x; width: 100%; height: 3px; position: absolute; z-index: 20; left: 0; right: 0; bottom: 0; }
-#greenBackground { background: url(/assets/images/greenBackground.png) #030; height: 100%; width: 100%; z-index: 1; position: relative; }
-#greenBackgroundGradient { background: url(/assets/images/greenGradient.png) repeat-x; width: 100%; height: 440px; position: absolute; z-index: 5; left: 0; right: 0; }
+#greenTopShadow { background: url(/assets/img/greenTopShadow.png) repeat-x; width: 100%; height: 3px; position: absolute; z-index: 20; left: 0; right: 0; top: 0; }
+#greenBottomShadow { background: url(/assets/img/greenBottomShadow.png) repeat-x; width: 100%; height: 3px; position: absolute; z-index: 20; left: 0; right: 0; bottom: 0; }
+#greenBackground { background: url(/assets/img/greenBackground.png) #030; height: 100%; width: 100%; z-index: 1; position: relative; }
+#greenBackgroundGradient { background: url(/assets/img/greenGradient.png) repeat-x; width: 100%; height: 440px; position: absolute; z-index: 5; left: 0; right: 0; }
 #greenBackgroundGradient #ymap { width: 100%; height: 100%; z-index: 5; position: absolute; }
 
-#redFlag { background: url(/assets/images/redFlag.png) no-repeat; width: 323px; height: 402px; float: right; margin: 0 0 38px 0; z-index: 10; position: relative; }
+#redFlag { background: url(/assets/img/redFlag.png) no-repeat; width: 323px; height: 402px; float: right; margin: 0 0 38px 0; z-index: 10; position: relative; }
 #redFlag h1 { margin: 20px 0 20px 30px; font: bold 2.2em/0.98em 'Noto Sans', Verdana, sans-serif; color: #6c6; text-shadow: #696 0px 0px 1px; }
 #redFlag dt { margin: 15px 0 0 30px; font: normal 1.1em 'Noto Sans', Verdana, sans-serif; color: #9c9; text-shadow: #696 0px 0px 1px; }
 #redFlag dd { font: normal 1.1em 'Noto Sans', Verdana, sans-serif; color: #fff; text-shadow: #aaa 0px 0px 1px; margin: 0 0 0 30px; }
@@ -470,15 +470,15 @@ li.socialIcon a:focus {
 #cboxLoadedContent { border: 0px solid #000; }
 #cboxTitle { display: none !important; position: absolute; top: -20px; left: 0; color: #ccc; }
 #cboxCurrent { display: none !important; position: absolute; top: -20px; right: 0px; color: #ccc;  }
-#cboxLoadingGraphic { background: url(/assets/images/loading.gif) no-repeat center center; }
+#cboxLoadingGraphic { background: url(/assets/img/loading.gif) no-repeat center center; }
 #cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose { border: 0; padding: 0; margin: 0; overflow: visible; width: auto; background: none; }
 #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active { outline: 0; }
 #cboxSlideshow { position: absolute; top: -20px; right: 90px; color: #fff; }
-#cboxPrevious { position: absolute; top: 50%; left: 0; margin-top: -32px; background: url(/assets/images/controls.png) no-repeat top left; width: 28px; height: 65px; text-indent: -9999px; }
+#cboxPrevious { position: absolute; top: 50%; left: 0; margin-top: -32px; background: url(/assets/img/controls.png) no-repeat top left; width: 28px; height: 65px; text-indent: -9999px; }
 #cboxPrevious:hover { background-position: bottom left; }
-#cboxNext { position: absolute; top: 50%; right: 0; margin-top: -32px; background: url(/assets/images/controls.png) no-repeat top right; width: 28px; height: 65px; text-indent: -9999px; }
+#cboxNext { position: absolute; top: 50%; right: 0; margin-top: -32px; background: url(/assets/img/controls.png) no-repeat top right; width: 28px; height: 65px; text-indent: -9999px; }
 #cboxNext:hover { background-position: bottom right; }
-#cboxClose { position: absolute; top: 0; right: 5px; display: block; background: url(/assets/images/controls.png) no-repeat top center; width: 38px; height: 19px; text-indent: -9999px; }
+#cboxClose { position: absolute; top: 0; right: 5px; display: block; background: url(/assets/img/controls.png) no-repeat top center; width: 38px; height: 19px; text-indent: -9999px; }
 #cboxClose:hover { background-position: bottom center; }
 
 
@@ -717,11 +717,11 @@ li.socialIcon a:focus {
 .loading#blogUpdatePreLoader {
     margin: 50px 0;
     height: 19px;
-    background: url(/assets/images/ajaxPreLoader.gif) no-repeat;
+    background: url(/assets/img/ajaxPreLoader.gif) no-repeat;
 }
 .post.loading {
     opacity: 0.7;
-    background: url(/assets/images/ajaxPreLoader.gif) 50% 5% no-repeat;
+    background: url(/assets/img/ajaxPreLoader.gif) 50% 5% no-repeat;
 }
 .pagingBlog {
     display: none;

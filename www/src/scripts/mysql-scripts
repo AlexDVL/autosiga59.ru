@@ -1,0 +1,7 @@
+/*
+ * Find and Replays
+ */
+
+UPDATE `modx_site_content` SET content = REPLACE(content, '/assets/images/', '/assets/img/');
+UPDATE `modx_site_templates` SET content = REPLACE(content, '/assets/images/', '/assets/img/');
+UPDATE `modx_site_htmlsnippets` SET snippet = REPLACE(snippet, '/assets/images/', '/assets/img/');
