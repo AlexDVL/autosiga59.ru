@@ -213,11 +213,6 @@ li.socialIcon a:focus {
     opacity: 0.7;
     background: url(/assets/img/ajaxPreLoader.gif) 50% 0% no-repeat;
 }
-.loading #preLoaderBlock  {
-    display: block; position: absolute; top: 0;
-    height: 100%; width: 100%;
-    background: rgba( 255, 255, 255, .7 ) url(/assets/img/ajaxPreLoader.gif) 50% 0% no-repeat;
-}
 
 
 
@@ -462,9 +457,9 @@ li.socialIcon a:focus {
 #colorbox, #cboxContent, #cboxLoadedContent { box-sizing: content-box; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; }
 
 /* ~~ User Style ~~ */
-#cboxOverlay {  }
-#colorbox { outline: 0; }
-#cboxContent { margin-top: 20px; background: #000; background:rgba(0, 0, 0, 0.9); }
+#cboxOverlay { }
+#colorbox { outline: 0; box-shadow: 0 0 50px #000 }
+#cboxContent { margin-top: 0; background: #000; background:rgba(0, 0, 0, 0.9); }
 .cboxIframe { background: #fff; }
 #cboxError { padding: 50px; border: 1px solid #ccc; }
 #cboxLoadedContent { border: 0px solid #000; }

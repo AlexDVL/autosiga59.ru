@@ -1,0 +1,29 @@
+User-agent: *
+Disallow: /assets/components/
+Disallow: /assets/css/
+Disallow: /assets/scripts/
+Disallow: /manager/
+Disallow: /core/
+Disallow: /connectors/
+Disallow: /index.php
+
+Host: autosiga59.ru
+Sitemap: http://autosiga59.ru/sitemap.xml
+
+User-agent: Googlebot
+Disallow: /assets/components/
+Disallow: /assets/css/
+Disallow: /assets/scripts/
+Disallow: /manager/
+Disallow: /core/
+Disallow: /connectors/
+Disallow: /index.php
+
+User-agent: Yandex
+Disallow: /assets/components/
+Disallow: /assets/css/
+Disallow: /assets/scripts/
+Disallow: /manager/
+Disallow: /core/
+Disallow: /connectors/
+Disallow: /index.php
