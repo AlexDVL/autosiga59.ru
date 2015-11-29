@@ -16,7 +16,7 @@ RewriteBase /
 # Rewrite www.domain.com -> domain.com -- used with SEO Strict URLs plugin
 RewriteCond %{HTTP_HOST} .
 RewriteCond %{HTTP_HOST} ^www\.(.*)|xn--59-6kcajg8a9b1ai\.xn--p1ai$ [NC]
-RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+RewriteRule ^(.*)$ http://autosiga59.ru/$1 [R=301,L]
 #
 # or for the opposite domain.com -> www.domain.com use the following
 # DO NOT USE BOTH

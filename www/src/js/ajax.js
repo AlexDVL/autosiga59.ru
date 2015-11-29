@@ -1,94 +1,147 @@
-/*jslint browser: true*/ /*global  $*/
+
 var isLoading = 0;
-/*
+
 var Ajax = function(settings)
 {
     this._urlAjax = settings.urlAjax;
     this._timeout = settings.timeout;
     this._dataType = settings.dataType;
 }
-var AjaxP = Ajax.prototype;
 
-AjaxP.add = function(settings)
+Ajax.prototype.add = function(settings)
 {
+    settings.Ajax = this;
     $(settings.selector).on(
         settings.eventName,
         settings.filterSelector,
         function(event)
         {
-            settings.event = event;
-            settings.sendData.link = this.getRelativeLink(event);
-            this.ajaxRequest(settings);
+            settings.target = event.target;
+            settings.eventData();
+            settings.Ajax.ajaxRequest(settings);
             return false;
         }
     );
 }
 
-AjaxP.ajaxRequest = function(settings)
+Ajax.prototype.ajaxRequest = function(settings)
 {
-    $.ajax({
-        dataType:   this._dataType,
-        timeout:    this._timeout,
-        url:        this._urlAjax,
-        data:       settigns.sendData,
+    $.ajax(
+    {
+        dataType  : this._dataType,
+        timeout   : this._timeout,
+        url       : this._urlAjax,
+        data      : settings.sendData,
         beforeSend: function()
                     {
-                        this.startAjaxRequest(settings);
-                        settings.preLoeader();
+                        settings.Ajax.startAjaxRequest(settings);
+                        settings.preLoader();
                     },
-        success:    function(data)
+        success   : function(data)
                     {
                         settings.handler(data);
-                        this.endAjaxRequest(data, settings);
+                        settings.Ajax.endAjaxRequest(data, settings);
                     },
-        error:      settings.error(),
-        complete:   settings.preLoeader()
+        error     : settings.error,
+        complete  : settings.preLoader
     });
 }
 
-AjaxP.getRelativeLink = function(obj)
+Ajax.prototype.getRelativeLink = function(obj)
 {
-    return  window.history.pushstate ?
+    return  window.history.pushState ?
             obj.pathname + obj.search :
             obj.hash.substring(1);
 }
 
-AjaxP.startAjaxRequest = function(settings)
+Ajax.prototype.startAjaxRequest = function(settings)
 {
-
+    if (settings.options.audit)
+    {
+        yaCounter28763381.hit(
+            settings.target.href,
+            settings.target.title,
+            this.getRelativeLink(settings.target));
+        ga('send',
+        {
+            'hitType': 'pageview',
+            'page': settings.target.href,
+            'title': settings.target.title
+        });
+    }
+    if (settings.options.changeUrl)
+    {
+        history.pushState(null, null, settings.target.href);
+    }
 }
 
-AjaxP.endAjaxRequest = function(data, settings)
+Ajax.prototype.endAjaxRequest = function(data, settings)
 {
-
+    if (settings.options.updateTitle)
+    {
+        document.title = data.pageTitle;
+    }
+    if (settings.options.changeActiveClass)
+    {
+        $(settings.target.parentNode)
+            .addClass('active-a')
+            .siblings('.active-a')
+            .removeClass('active-a');
+    }
+    // if (document.location.pathname === '/blog' ||
+    //     document.location.hash === '#/blog')
+    // {
+    //     blogScrollHandler();
+    // }
 }
 
 
 
 
-var AS59ajax = new Ajax({
+var AS59ajaxLink = new Ajax({
     urlAjax : '/ajax',
     timeout : 3000,
     dataType : 'json'
 });
 
-AS59ajax.add({
-    eventName         : 'click',
-    selector          : '#mainMenu',
-    filterSelector    : '#nav a.mainMenuItem',
-    preLoader         : function() {$('#content').toggleClass('loading');},
-    handler           : AS59ajax.mainMenu,
-    sendData          : {
-                            command : 0
-                        }
-    options           : {
-                            changeActiveClass : true,
-                            changeUrl         : true,
-                            updateTitle       : true,
-                            audit             : true
-                        }
+AS59ajaxLink.mainMenu = function (data)
+{
+    var appendData = data.tagList;
+    $('#content').empty().append(appendData, data.content);
+    if (data.tagList)
+    {
+        $(['.tags a[href="',
+            (!document.location.hash ?
+                (document.location.pathname.substring(1) + document.location.search.split('&')[0]) :
+                    document.location.hash.substring(2)), '"]'].join(''))
+                        .parent().addClass('active-a');
+    }
+}
+
+AS59ajaxLink.add(
+{
+    eventName     : 'click',
+    selector      : '#mainMenu',
+    filterSelector: '#nav a.mainMenuItem',
+    preLoader     : function() {$('#content').toggleClass('loading');},
+    handler       : AS59ajaxLink.mainMenu,
+    sendData      : {
+                        command : 0
+                    },
+    eventData     : function()
+                    {
+                        this.sendData.link = AS59ajaxLink.getRelativeLink(this.target);
+                    },
+    options       : {
+                        changeActiveClass : true,
+                        changeUrl         : true,
+                        updateTitle       : true,
+                        audit             : true
+                    }
 });
-*/
+
+
+/*
 $(window).ready(function() {
     //selector, filterSelector, changeActiveClass, changeLink, updateTitle, audit, command
     ajaxLinkHandler('#mainMenu', '#nav a.mainMenuItem',      1, 1, 1, 1, 0);
@@ -267,14 +320,14 @@ function ajaxContent(data, thisClick)
 {
     var appendData = data.tagList;
     $('#content').empty().append(appendData, data.content);
-    if (data.tagList)
-    {
-        $(['.tags a[href="',
-            (!document.location.hash ?
-                (document.location.pathname.substring(1) + document.location.search.split('&')[0]) :
-                    document.location.hash.substring(2)), '"]'].join(''))
-                        .parent().addClass('active-a');
-    }
+    // if (data.tagList)
+    // {
+    //     $(['.tags a[href="',
+    //         (!document.location.hash ?
+    //             (document.location.pathname.substring(1) + document.location.search.split('&')[0]) :
+    //                 document.location.hash.substring(2)), '"]'].join(''))
+    //                     .parent().addClass('active-a');
+    // }
 }
 
 function ajaxServicesMenuImg(data)
@@ -352,4 +405,4 @@ function ajaxReviewsUpdate(data)
         $('#MoreReviews').hide();
         $('#MoreReviews').after($('<div class="no-reviews" class="icon tick">').append('Пока все. Оставьте свой отзыв.'));
     }
-}
+}*/

@@ -1,9 +1,6 @@
 **/*
 !www
 !www/*
-!www/assets/*
-!www/assets/css/**
-!www/assets/js/**
 !www/src/*
 !www/src/css/**
 !www/src/js/**
