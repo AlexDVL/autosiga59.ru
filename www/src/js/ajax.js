@@ -1,103 +1,3 @@
-
-var isLoading = 0;
-
-var Ajax = function(settings)
-{
-    this._urlAjax = settings.urlAjax;
-    this._timeout = settings.timeout;
-    this._dataType = settings.dataType;
-}
-
-Ajax.prototype.add = function(settings)
-{
-    settings.Ajax = this;
-    $(settings.selector).on(
-        settings.eventName,
-        settings.filterSelector,
-        function(event)
-        {
-            settings.target = event.target;
-            settings.eventData();
-            settings.Ajax.ajaxRequest(settings);
-            return false;
-        }
-    );
-}
-
-Ajax.prototype.ajaxRequest = function(settings)
-{
-    $.ajax(
-    {
-        dataType  : this._dataType,
-        timeout   : this._timeout,
-        url       : this._urlAjax,
-        data      : settings.sendData,
-        beforeSend: function()
-                    {
-                        settings.Ajax.startAjaxRequest(settings);
-                        settings.preLoader();
-                    },
-        success   : function(data)
-                    {
-                        settings.handler(data);
-                        settings.Ajax.endAjaxRequest(data, settings);
-                    },
-        error     : settings.error,
-        complete  : settings.preLoader
-    });
-}
-
-Ajax.prototype.getRelativeLink = function(obj)
-{
-    return  window.history.pushState ?
-            obj.pathname + obj.search :
-            obj.hash.substring(1);
-}
-
-Ajax.prototype.startAjaxRequest = function(settings)
-{
-    if (settings.options.audit)
-    {
-        yaCounter28763381.hit(
-            settings.target.href,
-            settings.target.title,
-            this.getRelativeLink(settings.target));
-        ga('send',
-        {
-            'hitType': 'pageview',
-            'page': settings.target.href,
-            'title': settings.target.title
-        });
-    }
-    if (settings.options.changeUrl)
-    {
-        history.pushState(null, null, settings.target.href);
-    }
-}
-
-Ajax.prototype.endAjaxRequest = function(data, settings)
-{
-    if (settings.options.updateTitle)
-    {
-        document.title = data.pageTitle;
-    }
-    if (settings.options.changeActiveClass)
-    {
-        $(settings.target.parentNode)
-            .addClass('active-a')
-            .siblings('.active-a')
-            .removeClass('active-a');
-    }
-    // if (document.location.pathname === '/blog' ||
-    //     document.location.hash === '#/blog')
-    // {
-    //     blogScrollHandler();
-    // }
-}
-
-
-
-
 var AS59ajaxLink = new Ajax({
     urlAjax : '/ajax',
     timeout : 3000,
@@ -110,13 +10,24 @@ AS59ajaxLink.mainMenu = function (data)
     $('#content').empty().append(appendData, data.content);
     if (data.tagList)
     {
-        $(['.tags a[href="',
-            (!document.location.hash ?
-                (document.location.pathname.substring(1) + document.location.search.split('&')[0]) :
-                    document.location.hash.substring(2)), '"]'].join(''))
-                        .parent().addClass('active-a');
+        $('.tags a[href="'
+            + this.Ajax.getRelativeLink(document.location, {char:'&', item:0})
+            + '"]').parent().addClass('active-a');
     }
 }
+
+AS59ajaxLink.ajaxBlogUpdatePosts = function(data)
+{
+    $('#posts').append(data.content);
+    $('#blogUpdateSettings').attr('data-offset', (parseInt($('#blogUpdateSettings').attr('data-offset')) + 3));
+    if (!data.content)
+    {
+        $(window).off('scroll');
+        $('#posts').append($('<div id="noBlogPost" class="icon tick">').append('На сегодня все. Ждите обновлений.'));
+    }
+}
+
+
 
 AS59ajaxLink.add(
 {
@@ -125,19 +36,46 @@ AS59ajaxLink.add(
     filterSelector: '#nav a.mainMenuItem',
     preLoader     : function() {$('#content').toggleClass('loading');},
     handler       : AS59ajaxLink.mainMenu,
-    sendData      : {
-                        command : 0
-                    },
-    eventData     : function()
-                    {
-                        this.sendData.link = AS59ajaxLink.getRelativeLink(this.target);
-                    },
-    options       : {
-                        changeActiveClass : true,
-                        changeUrl         : true,
-                        updateTitle       : true,
-                        audit             : true
-                    }
+    data          : function()
+    {
+        return {
+            command : 0,
+            link : this.Ajax.getRelativeLink(this.target)
+        }
+    },
+    changeActiveClass : true,
+    changeUrl         : true,
+    updateTitle       : true,
+    audit             : true
+});
+
+AS59ajaxLink.activateBackButton();
+
+AS59ajaxLink.add(
+{
+    eventName     : 'scroll',
+    selector      : window,
+    preLoader     : function() {$('#blogUpdatePreLoader').toggleClass('loading');},
+    handler       : AS59ajaxLink.ajaxBlogUpdatePosts,
+    data          : function()
+    {
+        return {
+            command : 1,
+            offset : $('#blogUpdateSettings').attr('data-offset')
+        }
+    },
+    dynamicData     : function()
+    {
+        if (this.Ajax.getRelativeLink(document.location) !== '/blog')
+        {
+            return false;
+        }
+        var scroll_pos = $(window).scrollTop();
+        if (scroll_pos < 0.7 * ($(document).height() - $(window).height()))
+        {
+           return false;
+        }
+    }
 });
 
 

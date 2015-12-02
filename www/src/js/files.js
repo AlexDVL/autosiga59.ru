@@ -12,5 +12,6 @@
  * Development
  */
 
+//= ajax.core.js
 //= ajax.js
 //= settings.js
