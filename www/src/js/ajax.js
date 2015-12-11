@@ -64,7 +64,7 @@ AS59ajaxLink.add(
             offset : $('#blogUpdateSettings').attr('data-offset')
         }
     },
-    dynamicData     : function()
+    dynamicData    : function()
     {
         if (this.Ajax.getRelativeLink(document.location) !== '/blog')
         {

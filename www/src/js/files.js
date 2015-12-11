@@ -11,7 +11,10 @@
 /*
  * Development
  */
-
+//=AlexDVL/startAlexDVL.js
+//=AlexDVL/Core/core.js
+//=AlexDVL/endAlexDVL.js
+//= AlexDVL/AlexDVL.js
 //= ajax.core.js
 //= ajax.js
 //= settings.js
