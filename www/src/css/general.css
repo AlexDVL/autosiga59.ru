@@ -346,11 +346,10 @@ li.socialIcon a:focus {
 .tickets-message-error  {background-color: brown !important;}
 .tickets-message-info  {background-color: black !important;}
 
-.payments .heading {
-    text-shadow: none; text-align: center;
-    font: normal 2em 'Noto Sans', Verdana, sans-serif;
-}
 .payments .cash {
+    float: left;
+}
+.payments .cashLess {
     float: left;
 }
 .payments .bank-card {
@@ -361,22 +360,29 @@ li.socialIcon a:focus {
     display: block;
     padding: 40px 0;
 }
-.payments div {
-    width: 50%;
+.payments > div {
+    width: 33%;
     margin: 25px auto 20px auto;
     text-align: center;
 }
 .payments span {
-    font: bold 1.1em 'Noto Sans', Verdana, sans-serif;
+    font: bold 1.4em 'Noto Sans', Verdana, sans-serif;
     color: #333;
 }
 .payments div ul {
-    margin: 0 0 0 40px;
+    margin: 0 0 0 28px;
+    padding: 40px 0;
 }
 .payments div li {
-    list-style: square;
-    text-align: left;
+    list-style: none;
     padding: 10px 0 10px 0;
+    text-align: left;
+    font: bold 1.1em 'Noto Sans', Verdana, sans-serif;
+    color: #C00;
+}
+.payments div li div {
+    font: normal 0.95em 'Noto Sans', Verdana, sans-serif;
+    color: #333;
 }
 
 /* ~~ Services page ~~ */
